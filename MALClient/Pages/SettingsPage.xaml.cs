@@ -22,11 +22,11 @@ namespace MALClient.Pages
     {
         private bool _initialized;
 
-        public SettingsPageViewModel ViewModel => DataContext as SettingsPageViewModel;
-
         public SettingsPage()
         {
             InitializeComponent();
+            if (Credentials.Authenticated)
+                                BtnLogOff.Visibility = Visibility.Visible;
             ListTodo.ItemsSource = new ObservableCollection<string>
             {
                 "Add non image live tiles with stats and such. Overhaul tiles in general.",
@@ -420,11 +420,15 @@ namespace MALClient.Pages
                 ? Visibility.Visible
                 : Visibility.Collapsed;
         }
-
-        private void Pivot_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        private async void LogOut(object sender, RoutedEventArgs e)
         {
-            if((sender as Pivot).SelectedIndex == 4)
-                ViewModel.LoadNews();
+            var page = Utils.GetMainPageInstance();
+            Credentials.SetAuthStatus(false);
+            Credentials.Update("", "");
+            await Utils.RemoveProfileImg();
+            ViewModelLocator.AnimeList.LogOut();
+            await page.Navigate(PageIndex.PageLogIn);
+            ViewModelLocator.Hamburger.UpdateProfileImg();
         }
     }
 }
