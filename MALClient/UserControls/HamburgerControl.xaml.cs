@@ -46,6 +46,8 @@ namespace MALClient.UserControls
                 ButtonExpandAnimeFiltersOnClick(null,null);
             if (Settings.HamburgerMangaFiltersExpanded)
                 ButtonExpandMangaFiltersOnClick(null,null);
+            if (Credentials.Authenticated)
+                BtnAccount.Visibility = Visibility.Collapsed;
         }
 
         private static readonly Brush _b2 =

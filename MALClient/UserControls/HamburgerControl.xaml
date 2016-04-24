@@ -372,14 +372,14 @@
                                        Grid.Column="1" VerticalAlignment="Center" TextAlignment="Center" />
                             </Grid>
                         </Button>
-                        <Button HorizontalContentAlignment="Stretch" HorizontalAlignment="Stretch"
+                        <Button x:Name="BtnAccount" HorizontalContentAlignment="Stretch" HorizontalAlignment="Stretch"
                             Background="Transparent" 
                             BorderThickness="0" 
                             PointerEntered="Button_PointerEntered"
                             PointerExited="Button_PointerExited"
                             Command="{Binding ButtonNavigationCommand}"
                             CommandParameter="4">
-                            <Grid Height="35">
+                            <Grid Height="45">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="60" />
                                     <ColumnDefinition Width="*" />
@@ -403,7 +403,7 @@
                             Visibility="{Binding ProfileButtonVisibility,Converter={StaticResource BoolToVisibilityConverter}}"
                             Command="{Binding ButtonNavigationCommand}"
                             CommandParameter="5">
-                            <Grid Height="35">
+                            <Grid Height="45">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="60" />
                                     <ColumnDefinition Width="*" />
@@ -429,7 +429,7 @@
                             PointerExited="Button_PointerExited"
                             Command="{Binding ButtonNavigationCommand}"
                             CommandParameter="2">
-                            <Grid Height="35">
+                            <Grid Height="45">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="60" />
                                     <ColumnDefinition Width="*" />
