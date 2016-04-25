@@ -212,3 +212,5 @@ _Pvt_Extensions/
 ModelManifest.xml
 
 *.resw
+MALClient/project.lock.json
+MALClient/ViewModels/HamburgerControlViewModel.cs
