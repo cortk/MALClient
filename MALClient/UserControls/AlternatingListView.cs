@@ -25,8 +25,8 @@ namespace MALClient.UserControls
         public static readonly DependencyProperty InvertRowAlternationProperty =
             DependencyProperty.Register(
                 "DataSource",
-                typeof (bool),
-                typeof (AlternatingListView),
+                typeof(bool),
+                typeof(AlternatingListView),
                 new PropertyMetadata(
                     false, PropertyChangedCallback));
 
@@ -58,7 +58,7 @@ namespace MALClient.UserControls
             if (listViewItem != null)
             {
                 var index = IndexFromContainer(element);
-                if ((index + 1)%2 == 0)
+                if ((index + 1) % 2 == 0)
                 {
                     listViewItem.Background = CurrBrush1;
                 }

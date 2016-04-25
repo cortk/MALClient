@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.Storage;
 using Windows.UI;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
@@ -70,10 +71,10 @@ namespace MALClient.ViewModels
             }
             set
             {
-                if(!_allowFilterNavigation) //when hamburger gets collapsed we don't want to trigger this thing
+                if (!_allowFilterNavigation) //when hamburger gets collapsed we don't want to trigger this thing
                     return;
                 if (ViewModelLocator.Main.CurrentMainPage != PageIndex.PageAnimeList || ViewModelLocator.AnimeList.WorkMode != AnimeListWorkModes.Anime)
-                    ViewModelLocator.Main.Navigate(PageIndex.PageAnimeList,new AnimeListPageNavigationArgs(value, AnimeListWorkModes.Anime));
+                    ViewModelLocator.Main.Navigate(PageIndex.PageAnimeList, new AnimeListPageNavigationArgs(value, AnimeListWorkModes.Anime));
                 ViewModelLocator.AnimeList.StatusSelectorSelectedIndex = value;
                 SetActiveButton(HamburgerButtons.AnimeList);
                 RaisePropertyChanged(() => CurrentAnimeFiltersSelectedIndex);
@@ -94,8 +95,8 @@ namespace MALClient.ViewModels
             }
             set
             {
-                if (ViewModelLocator.Main.CurrentMainPage != PageIndex.PageAnimeList || ViewModelLocator.AnimeList.WorkMode != AnimeListWorkModes.Manga)                    
-                    ViewModelLocator.Main.Navigate(PageIndex.PageAnimeList, new AnimeListPageNavigationArgs(value,AnimeListWorkModes.Manga));
+                if (ViewModelLocator.Main.CurrentMainPage != PageIndex.PageAnimeList || ViewModelLocator.AnimeList.WorkMode != AnimeListWorkModes.Manga)
+                    ViewModelLocator.Main.Navigate(PageIndex.PageAnimeList, new AnimeListPageNavigationArgs(value, AnimeListWorkModes.Manga));
                 ViewModelLocator.AnimeList.StatusSelectorSelectedIndex = value;
                 SetActiveButton(HamburgerButtons.MangaList);
                 RaisePropertyChanged(() => CurrentMangaFiltersSelectedIndex);
@@ -138,7 +139,7 @@ namespace MALClient.ViewModels
             {
                 return _buttonAdCommand ?? (_buttonAdCommand = new RelayCommand(() =>
                 {
-                
+
                 }
                     ));
             }
@@ -199,7 +200,7 @@ namespace MALClient.ViewModels
                 case PageIndex.PageMangaList:
                     return AnimeListPageNavigationArgs.Manga;
                 case PageIndex.PageMangaSearch:
-                    return new SearchPageNavigationArgs {Anime = false};
+                    return new SearchPageNavigationArgs { Anime = false };
                 case PageIndex.PageSearch:
                     return new SearchPageNavigationArgs();
                 case PageIndex.PageTopAnime:

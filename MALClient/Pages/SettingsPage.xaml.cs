@@ -22,11 +22,11 @@ namespace MALClient.Pages
     {
         private bool _initialized;
 
+        public SettingsPageViewModel ViewModel => DataContext as SettingsPageViewModel;
+
         public SettingsPage()
         {
             InitializeComponent();
-            if (Credentials.Authenticated)
-                                BtnLogOff.Visibility = Visibility.Visible;
             ListTodo.ItemsSource = new ObservableCollection<string>
             {
                 "Add non image live tiles with stats and such. Overhaul tiles in general.",
@@ -69,7 +69,7 @@ namespace MALClient.Pages
             SetDesiredStatus();
             SliderSetup();
             ToggleSwitchSetup();
-            ComboThemes.SelectedIndex = (int) Settings.SelectedTheme;
+            ComboThemes.SelectedIndex = (int)Settings.SelectedTheme;
             TxtThemeChangeNotice.Visibility = Settings.SelectedTheme != Application.Current.RequestedTheme
                 ? Visibility.Visible
                 : Visibility.Collapsed;
@@ -270,7 +270,7 @@ namespace MALClient.Pages
             if (!_initialized)
                 return;
             Settings.DefaultAnimeFilter =
-                Utils.StatusToInt((string) ((sender as ComboBox).SelectedItem as ComboBoxItem).Content);
+                Utils.StatusToInt((string)((sender as ComboBox).SelectedItem as ComboBoxItem).Content);
         }
 
         private void SetDesiredStatus()
@@ -290,21 +290,21 @@ namespace MALClient.Pages
         {
             if (!_initialized || Math.Abs(e.NewValue - e.OldValue) < 1)
                 return;
-            Settings.ItemsPerPage = (int) e.NewValue;
+            Settings.ItemsPerPage = (int)e.NewValue;
         }
 
         private void ChangedReviewsToPull(object sender, RangeBaseValueChangedEventArgs e)
         {
             if (!_initialized || Math.Abs(e.NewValue - e.OldValue) < 1)
                 return;
-            Settings.ReviewsToPull = (int) e.NewValue;
+            Settings.ReviewsToPull = (int)e.NewValue;
         }
 
         private void ChangedRecommsToPull(object sender, RangeBaseValueChangedEventArgs e)
         {
             if (!_initialized || Math.Abs(e.NewValue - e.OldValue) < 1)
                 return;
-            Settings.RecommsToPull = (int) e.NewValue;
+            Settings.RecommsToPull = (int)e.NewValue;
         }
 
 
@@ -312,7 +312,7 @@ namespace MALClient.Pages
         {
             if (!_initialized || Math.Abs(e.NewValue - e.OldValue) < 1)
                 return;
-            Settings.SeasonalToPull = (int) e.NewValue;
+            Settings.SeasonalToPull = (int)e.NewValue;
         }
 
         private void SliderSetup()
@@ -384,7 +384,7 @@ namespace MALClient.Pages
             if (!_initialized)
                 return;
             Settings.DefaultMangaFilter =
-                Utils.StatusToInt((string) ((sender as ComboBox).SelectedItem as ComboBoxItem).Content);
+                Utils.StatusToInt((string)((sender as ComboBox).SelectedItem as ComboBoxItem).Content);
         }
 
         private void ChangeDefaultTab(object sender, RoutedEventArgs e)
@@ -396,7 +396,7 @@ namespace MALClient.Pages
         private void ToggleSwitchDetailsAutoLoadChange(object sender, RoutedEventArgs e)
         {
             var btn = sender as ToggleSwitch;
-            switch ((string) btn.Tag)
+            switch ((string)btn.Tag)
             {
                 case "0":
                     Settings.DetailsAutoLoadDetails = btn.IsOn;
@@ -415,11 +415,18 @@ namespace MALClient.Pages
 
         private void ChangeTheme(object sender, SelectionChangedEventArgs e)
         {
-            Settings.SelectedTheme = (ApplicationTheme) ComboThemes.SelectedIndex;
+            Settings.SelectedTheme = (ApplicationTheme)ComboThemes.SelectedIndex;
             TxtThemeChangeNotice.Visibility = Settings.SelectedTheme != Application.Current.RequestedTheme
                 ? Visibility.Visible
                 : Visibility.Collapsed;
         }
+
+        private void Pivot_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if ((sender as Pivot).SelectedIndex == 4)
+                ViewModel.LoadNews();
+        }
+
         private async void LogOut(object sender, RoutedEventArgs e)
         {
             var page = Utils.GetMainPageInstance();

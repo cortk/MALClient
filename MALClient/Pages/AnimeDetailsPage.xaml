@@ -74,7 +74,7 @@
                                     IsEnabled="{Binding RemoveAnimeBtnEnableState}"
                                     HorizontalAlignment="Stretch"
                                     Background="Transparent"
-                                    Margin="0,5,0,0"> 
+                                    Margin="0,5,0,0">
                     <ToolTipService.ToolTip>
                         <ToolTip Content="Remove anime from your list."></ToolTip>
                     </ToolTipService.ToolTip>
@@ -92,7 +92,7 @@
                     <Button.RenderTransform>
                         <ScaleTransform ScaleY=".75" ScaleX=".75"></ScaleTransform>
                     </Button.RenderTransform>
-                </Button>                
+                </Button>
                 <Button HorizontalAlignment="Stretch" Height="40" Width="40" RenderTransformOrigin="0.5,0.5"
                         Command="{Binding  DecrementEpsCommand}"
                         IsEnabled="{Binding IsDecrementButtonEnabled}"

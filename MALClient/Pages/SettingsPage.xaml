@@ -15,21 +15,20 @@
     </Page.Resources>
 
     <Grid Background="{ThemeResource BrushDetailsBackground}">
-        <Pivot>
+        <Pivot SelectionChanged="Pivot_OnSelectionChanged">
             <Pivot.Items>
                 <PivotItem Header="General">
                     <ScrollViewer VerticalScrollBarVisibility="Hidden">
                         <StackPanel>
-                            <StackPanel HorizontalAlignment="Stretch">
-                                <Button x:Name="BtnLogOff" Click="LogOut" HorizontalAlignment="Center" Visibility="Collapsed" Content="Log out" Margin="3,3"/>
+                            <Button x:Name="BtnLogOff" Click="LogOut" HorizontalAlignment="Center" Visibility="Visible" Content="Log out" Margin="3,3"/>
 
+                            <StackPanel HorizontalAlignment="Stretch">
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                     <TextBlock Text="Color theme :" FontWeight="Medium"
                                                TextWrapping="WrapWholeWords" HorizontalAlignment="Center"
                                                VerticalAlignment="Center" />
                                     <ComboBox x:Name="ComboThemes" HorizontalAlignment="Center" Margin="10,0,0,0"
                                               SelectionChanged="ChangeTheme" VerticalAlignment="Center">
-
                                         <ComboBox.Items>
                                             <ComboBoxItem Content="Light" />
                                             <ComboBoxItem Content="Dark" />
@@ -379,7 +378,7 @@
                                 <ToggleSwitch HorizontalAlignment="Center" Header="Filter flyout" OnContent="Hide"
                                               OffContent="Keep"
                                               IsOn="{Binding HideFilterSelectionFlyout,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
-                                   </StackPanel>                            
+                            </StackPanel>
                             <MenuFlyoutSeparator Margin="0,5" />
                             <StackPanel Margin="5,5" HorizontalAlignment="Stretch">
                                 <TextBlock Margin="0,7" Text="Expandable filters list default state:"
@@ -395,7 +394,6 @@
                         </StackPanel>
                     </ScrollViewer>
                 </PivotItem>
-
                 <PivotItem Header="Caching">
                     <ScrollViewer>
                         <StackPanel HorizontalAlignment="Stretch">
@@ -451,7 +449,6 @@
                         </StackPanel>
                     </ScrollViewer>
                 </PivotItem>
-
                 <PivotItem Header="Sliders">
                     <ScrollViewer>
                         <StackPanel>
@@ -557,8 +554,6 @@
                         </Grid>
                     </StackPanel>
                 </PivotItem>
-<<<<<<< HEAD
-=======
                 <PivotItem Header="News" Padding="2" Margin="0">
                     <ListView ItemsSource="{Binding CurrentNews}" SelectionMode="None">
                         <ListView.ItemContainerStyle>
@@ -592,7 +587,6 @@
                         </ListView.ItemTemplate>
                     </ListView>
                 </PivotItem>
->>>>>>> refs/remotes/Mordonus/x86-x64-WideUI
                 <PivotItem Header="About" Padding="2" Margin="0">
                     <ScrollViewer VerticalScrollBarVisibility="Hidden">
                         <ScrollViewer.Resources>
